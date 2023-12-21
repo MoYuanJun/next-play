@@ -26,6 +26,7 @@
 
   // Code Spell Checker 插件忽略检查的词
   "cSpell.words": [
+    "commitlint",
     "multilines",
     "nextui",
     "parens",

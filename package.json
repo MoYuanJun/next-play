@@ -1,12 +1,13 @@
 {
   "name": "init",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "release": "standard-version",
     "prepare": "husky install"
   },
   "dependencies": {
@@ -29,6 +30,7 @@
     "lint-staged": "^15.2.0",
     "postcss": "^8",
     "prettier": "3.1.1",
+    "standard-version": "^9.5.0",
     "stylelint": "^16.0.2",
     "stylelint-config-standard": "^35.0.0",
     "tailwindcss": "^3.3.0",

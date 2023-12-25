@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export default function RootLayout({
   children,
 }: {
@@ -7,6 +9,7 @@ export default function RootLayout({
     <div>
       <div>dashboard - layout</div>
       <div>{children}</div>
+      <Link href="/dashboard/detail">detail</Link>
     </div>
   );
 }

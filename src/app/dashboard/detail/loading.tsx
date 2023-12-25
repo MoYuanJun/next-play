@@ -1,3 +1,3 @@
-const context = 'loading....';
+const context = () => 'loading....';
 
 export default context;

@@ -9,18 +9,23 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  team,
+  analytics,
 }: {
   data: any;
   children: React.ReactNode;
+  team: React.ReactNode;
+  analytics: React.ReactNode;
 }) {
   return (
     <html
       lang="en"
       className="light">
       <body>
-        <div>header</div>
+        <h1>root layout</h1>
         {children}
-        <div>footer</div>
+        {team}
+        {analytics}
       </body>
     </html>
   );

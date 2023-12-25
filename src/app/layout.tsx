@@ -16,7 +16,12 @@ export default function RootLayout({
     <html
       lang="en"
       className="light">
-      <body>{children}</body>
+      <body>
+        <div className="flex">
+          <div>左侧</div>
+          <div className="flex-1">{children}</div>
+        </div>
+      </body>
     </html>
   );
 }

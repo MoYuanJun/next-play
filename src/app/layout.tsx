@@ -15,12 +15,8 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className="dark">
-      <body>
-        {children}
-        <span>2222</span>
-        222
-      </body>
+      className="light">
+      <body>{children}</body>
     </html>
   );
 }

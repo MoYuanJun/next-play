@@ -14,14 +14,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="en"
-      className="light">
-      <body>
-        <div>header</div>
-        {children}
-        <div>footer</div>
-      </body>
-    </html>
+    <div className="flex">
+      <div>左侧</div>
+      <div className="flex-1">{children}</div>
+    </div>
   );
 }

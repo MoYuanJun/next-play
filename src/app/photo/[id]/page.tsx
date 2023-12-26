@@ -5,13 +5,8 @@ const Context = ({ params: { id } }: { params: { id: string } }) => {
 
   return (
     <img
-      style={{
-        width: '50%',
-        display: 'block',
-        marginLeft: 'auto',
-        marginRight: 'auto',
-      }}
       src={photo?.src}
+      style={{ width: 400 }}
     />
   );
 };

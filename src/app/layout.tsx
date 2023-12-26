@@ -1,8 +1,6 @@
-'use client';
 // import type { Metadata } from 'next';
 
 import './globals.css';
-import Link from 'next/link';
 
 // export const metadata: Metadata = {
 //   title: 'Create Next App',
@@ -11,10 +9,10 @@ import Link from 'next/link';
 
 export default function RootLayout({
   children,
-  auth,
+  modal,
 }: {
   data: any;
-  auth: React.ReactNode;
+  modal: React.ReactNode;
   children: React.ReactNode;
 }) {
   return (
@@ -24,11 +22,7 @@ export default function RootLayout({
       <body>
         <h1>root layout</h1>
         {children}
-        {auth}
-
-        <div className="p-8">
-          <Link href="/login">login</Link>
-        </div>
+        {modal}
       </body>
     </html>
   );

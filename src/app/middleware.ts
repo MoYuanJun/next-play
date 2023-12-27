@@ -1,17 +1,18 @@
 // middleware.js
 import { NextResponse, type NextRequest } from 'next/server';
 
-// 中间件可以是 async 函数，如果使用了 await
+// This function can be marked `async` if using `await` inside
 export const middleware = (request: NextRequest) => {
   console.log(
-    '%c [ 1 ]-7',
+    '%c [ request ]-6',
     'font-size:13px; background:pink; color:#bf2c9f;',
-    1,
+    request,
   );
-  return NextResponse.redirect(new URL('/home', request.url));
+
+  return NextResponse.redirect('/');
 };
 
-// 设置匹配路径
+// See "Matching Paths" below to learn more
 export const config = {
   matcher: '/about/:path*',
 };

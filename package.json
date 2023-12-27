@@ -32,6 +32,7 @@
     "lint-staged": "^15.2.0",
     "postcss": "^8",
     "prettier": "3.1.1",
+    "sass": "^1.69.5",
     "standard-version": "^9.5.0",
     "stylelint": "^16.0.2",
     "stylelint-config-standard": "^35.0.0",

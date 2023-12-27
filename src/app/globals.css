@@ -1,3 +1,4 @@
+/* 添加 Tailwind CSS 指令, 将 Tailwind 的样式注入到全局样式中 */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

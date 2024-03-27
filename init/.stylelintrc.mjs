@@ -1,10 +1,10 @@
-{
-  "extends": "stylelint-config-standard",
-  "rules": {
+export default {
+  extends: "stylelint-config-standard",
+  rules: {
     "at-rule-no-unknown": [
       true,
       {
-        "ignoreAtRules": [
+        ignoreAtRules: [
           "tailwind",
           "apply",
           "variants",

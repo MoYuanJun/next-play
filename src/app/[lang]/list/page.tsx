@@ -1,14 +1,15 @@
-import Link from "next/link";
+import Link from 'next/link';
 
 const List = () => {
   return (
-    <main >
+    <main>
       <Link
-        locale="en" 
-        href="/en/list/111"
-      >222</Link>
+        locale="en"
+        href="/en/list/111">
+        222
+      </Link>
     </main>
   );
-}
+};
 
-export default List
+export default List;

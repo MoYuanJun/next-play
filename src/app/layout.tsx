@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import Provider from './Provider';
 import './globals.css';
+import clsx from 'clsx';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -19,7 +20,7 @@ export default function RootLayout({
     <html
       lang="en"
       className="light">
-      <body className={inter.className}>
+      <body className={clsx(inter.className, 'm-20')}>
         <Provider>{children}</Provider>
       </body>
     </html>

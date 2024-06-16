@@ -1,14 +1,14 @@
-// import { Metadata } from 'next';
+import { getDictionary } from '@/dictionaries';
 
-// /** 动态设置元数据 */
-// export const generateMetadata = async (props) => {
-//   console.log('%c [ props ]-5', 'background:pink; color:#bf2c9f;', props);
+interface PostProps {
+  params: {
+    lang: string;
+  };
+}
 
-//   return {} as Metadata;
-// };
-
-const Post = () => {
-  return <main>post</main>;
+const Post = async ({ params: { lang } }: PostProps) => {
+  const dict = await getDictionary(lang); // en
+  return <main>{dict.cart}</main>;
 };
 
 export default Post;

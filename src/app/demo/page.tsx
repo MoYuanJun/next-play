@@ -47,8 +47,8 @@ const Page = () => {
   }, []);
 
   return (
-    <div className="flex h-screen w-screen items-center justify-center ">
-      <div className="size-1/2 rounded-lg bg-[#050713]/90">{/* <Input /> */}</div>
+    <div className="relative h-screen w-screen bg-[#1e1e1e]">
+      <div className="absolute bottom-7 left-1/2 h-40 w-1/2 -translate-x-1/2 rounded-lg bg-[#2a2a2a]" />
     </div>
   );
 };

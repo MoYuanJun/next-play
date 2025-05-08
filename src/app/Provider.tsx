@@ -1,14 +1,10 @@
-'use client'
-import { NextUIProvider } from "@nextui-org/react";
+'use client';
+import { HeroUIProvider } from '@heroui/react';
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <NextUIProvider>
-      {children}
-    </NextUIProvider>
-  );
+  return <HeroUIProvider>{children}</HeroUIProvider>;
 }

@@ -1,5 +1,6 @@
 'use client';
 import { useEffect } from 'react';
+import { Textarea } from '@heroui/input';
 
 const ENDPOINT = 'https://api.coze.cn/v3/chat';
 const API_KEY = process.env.API_KEY;
@@ -47,8 +48,16 @@ const Page = () => {
   }, []);
 
   return (
-    <div className="relative h-screen w-screen bg-[#1e1e1e]">
-      <div className="absolute bottom-7 left-1/2 h-40 w-1/2 -translate-x-1/2 rounded-lg bg-[#2a2a2a]" />
+    <div className="relative h-screen w-screen bg-[#080c22]">
+      <div className="absolute bottom-7 left-1/2 w-1/2 -translate-x-1/2 rounded-lg bg-[#2a2a2a]">
+        <Textarea
+          color="default"
+          classNames={{
+            input: 'group-data-[has-value=true]:text-white/80',
+            inputWrapper: 'bg-transparent group-data-[focus]:bg-[#29272e] data-[hover]:bg-[#29272e]',
+          }}
+        />
+      </div>
     </div>
   );
 };

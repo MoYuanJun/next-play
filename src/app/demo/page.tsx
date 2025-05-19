@@ -1,10 +1,10 @@
 'use client';
+import clsx from 'clsx';
 import Icon from '@/components/Icon';
-import { useCallback, useMemo, useState } from 'react';
+import sendMessage from './sendMessage';
 import { Button } from '@heroui/react';
 import { Textarea } from '@heroui/input';
-import sendMessage from './send';
-import clsx from 'clsx';
+import { useCallback, useMemo, useState } from 'react';
 
 const Page = () => {
   const [value, setValue] = useState('');
@@ -16,11 +16,13 @@ const Page = () => {
     const data = [...messages];
 
     if (isLoading) {
-      data.push({ role: 'assistant', content: '.....' });
+      data.push({
+        role: 'assistant',
+        content: '正在思考...',
+      });
     }
-
     return data;
-  }, [isLoading, messages]);
+  }, [messages, isLoading]);
 
   const handleSend = useCallback(async () => {
     const currentMessage = {
@@ -28,13 +30,13 @@ const Page = () => {
       content: value,
     };
 
+    setValue('');
     setMessages((pre) => [...pre, currentMessage]);
 
     setIsLoading(true);
     const message = await sendMessage(currentMessage);
-    setIsLoading(false);
-
     setMessages((pre) => [...pre, message]);
+    setIsLoading(false);
   }, [value]);
 
   return (
@@ -59,6 +61,7 @@ const Page = () => {
         <Textarea
           value={value}
           color="default"
+          placeholder="输入你想说的话..."
           onChange={(e) => setValue(e.target.value)}
           classNames={{
             input: 'group-data-[has-value=true]:text-white/80',
@@ -70,8 +73,6 @@ const Page = () => {
             isIconOnly
             size="sm"
             radius="full"
-            aria-label="Like"
-            color="default"
             onPress={handleSend}>
             <Icon
               name="icon-arrdown"

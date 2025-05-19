@@ -1,7 +1,7 @@
 const ENDPOINT = 'https://api.deepseek.com/chat/completions';
 const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
 
-const send = async (message: { role: string; content: string }) => {
+const sendMessage = async (message: { role: string; content: string }) => {
   // 组装请求头
   const headers = {
     'Content-Type': 'application/json',
@@ -28,4 +28,4 @@ const send = async (message: { role: string; content: string }) => {
   return res.choices[0].message;
 };
 
-export default send;
+export default sendMessage;

@@ -1,31 +1,32 @@
-const ENDPOINT = 'https://api.deepseek.com/chat/completions';
-const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
+interface Message {
+  role: string;
+  content: string;
+}
 
-const sendMessage = async (message: { role: string; content: string }) => {
-  // 组装请求头
-  const headers = {
-    'Content-Type': 'application/json',
-    Authorization: `Bearer ${API_KEY}`, // 需要通过请求头(Authorization)设置 API Keys
-  };
+interface SendMessageParams {
+  message: Message;
+  onMessage: (message: Message) => void;
+}
 
-  // 组装请求体
-  const payload = {
-    model: 'deepseek-chat', // 选择模型
-    messages: [message], // 消息体
-    stream: false, // 是否开启流式输出
-  };
-
+const sendMessage = async ({ message, onMessage }: SendMessageParams) => {
   // 发送请求(其实就是正常发个 POST 请求)
-  const response = await fetch(ENDPOINT, {
-    method: 'POST',
-    headers,
-    body: JSON.stringify(payload),
+  const eventSource = new EventSource(`/api/ds-chat?question=${message.content}`);
+
+  eventSource.addEventListener('message', (event) => {
+    if (event.data === '[DONE]') {
+      eventSource.close();
+      return;
+    }
+
+    if (event.data !== '') {
+      const message = JSON.parse(event.data).choices[0].delta;
+      onMessage(message);
+    }
   });
 
-  // 等待结果的返回
-  const res = await response.json();
-
-  return res.choices[0].message;
+  eventSource.addEventListener('end', () => {
+    eventSource.close();
+  });
 };
 
 export default sendMessage;

@@ -4,25 +4,14 @@ import Icon from '@/components/Icon';
 import sendMessage from './sendMessage';
 import { Button } from '@heroui/react';
 import { Textarea } from '@heroui/input';
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useState } from 'react';
+
+const loadingMessage = '正在思考...';
 
 const Page = () => {
   const [value, setValue] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
 
   const [messages, setMessages] = useState<{ role: string; content: string }[]>([]);
-
-  const list = useMemo(() => {
-    const data = [...messages];
-
-    if (isLoading) {
-      data.push({
-        role: 'assistant',
-        content: '正在思考...',
-      });
-    }
-    return data;
-  }, [messages, isLoading]);
 
   const handleSend = useCallback(async () => {
     const currentMessage = {
@@ -31,18 +20,38 @@ const Page = () => {
     };
 
     setValue('');
-    setMessages((pre) => [...pre, currentMessage]);
 
-    setIsLoading(true);
-    const message = await sendMessage(currentMessage);
-    setMessages((pre) => [...pre, message]);
-    setIsLoading(false);
+    setMessages((pre) => [
+      ...pre,
+      currentMessage,
+      {
+        role: 'assistant',
+        content: loadingMessage,
+      },
+    ]);
+
+    await sendMessage({
+      message: currentMessage,
+      onMessage: (message) =>
+        setMessages((pre) => {
+          const list = [...pre];
+          const lastMessage = list[list.length - 1];
+
+          if (lastMessage.content === loadingMessage) {
+            lastMessage.content = message.content;
+          } else {
+            lastMessage.content += message.content;
+          }
+
+          return list;
+        }),
+    });
   }, [value]);
 
   return (
     <div className="flex min-h-screen w-screen justify-center overflow-y-auto bg-[#080c22]">
       <div className="mt-10 w-1/2 pb-80">
-        {list.map((message, index) => (
+        {messages.map((message, index) => (
           <div
             key={index}
             className={clsx('mb-3 flex', message.role === 'user' ? 'justify-end' : 'justify-start')}>

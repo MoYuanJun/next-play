@@ -1,5 +1,5 @@
 const ENDPOINT = 'https://api.deepseek.com/chat/completions';
-const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
+const API_KEY = process.env.NEXT_PUBLIC_DS_API_KEY;
 
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
